@@ -7,5 +7,5 @@ altair
 scipy
 scikit-learn
 xgboost
-st-aggrid
+streamlit-aggrid
 pickle5
