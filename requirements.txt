@@ -1,0 +1,11 @@
+streamlit
+pandas
+numpy
+matplotlib
+seaborn
+altair
+scipy
+scikit-learn
+xgboost
+st-aggrid
+pickle5
