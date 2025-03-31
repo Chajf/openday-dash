@@ -23,7 +23,7 @@ with st.sidebar:
     st.header("Hiperparametry")
     if model=="Regresja logistyczna":
         C = st.slider("Współczynnik regularyzacji",0.1,1.0)
-        pen = st.selectbox("Rodzaj kary", ("l2","Brak"))
+        pen = st.selectbox("Rodzaj kary", ("l2","l1"))
     elif model=="Drzewo decyzyjne":
         t1 = st.slider("Max. głębokość",2,10)
         t2 = st.slider("Min. liczba obs. w liściu", 2,10)
@@ -33,16 +33,13 @@ with st.sidebar:
     # elif model=="KNN":
     #    mod = md.knn(X_train, y_train,leaf_size=1,n_neighbors=3,p=1)
     elif model=="XGBoost":
-        xgb1 = st.slider("Liczba drzew",50,500)
+        xgb1 = st.slider("Liczba drzew",10,50)
         xgb2 = st.slider("współczynnik nauki", 0.0001, 0.1)
     mod_button = st.button("Naucz model")
 
 if mod_button:
     if model=="Regresja logistyczna":
-        if pen=="Brak":
-            st.session_state.mod = md.logreg(X_train,y_train,C=C,penalty=None, random_state=42)
-        else:
-            st.session_state.mod = md.logreg(X_train,y_train,C=C,penalty=pen, random_state=42)
+        st.session_state.mod = md.logreg(X_train,y_train,C=C,penalty=pen, random_state=42)
     elif model=="Drzewo decyzyjne":
         st.session_state.mod = md.tree(X_train, y_train, max_depth=t1, min_samples_leaf=t2, random_state=42)
     elif model=="Las losowy":
